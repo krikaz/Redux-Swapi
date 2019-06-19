@@ -11,21 +11,21 @@ export const FAILURE = 'FAILURE';
 // the url to fetch characters from is `https://swapi.co/api/people/`
 // remember that now we have controll over our thunk-based action creator
 
-export const fetching = () => {
+const fetching = () => {
 	// debugger;
 	return {
 		type: FETCHING,
 	};
 };
 
-export const succeded = people => {
+const succeded = people => {
 	return {
 		type: SUCCESS,
 		payload: people,
 	};
 };
 
-export const failed = errorMessage => {
+const failed = errorMessage => {
 	return {
 		type: FAILURE,
 		payload: errorMessage,
