@@ -35,15 +35,15 @@ export const failed = errorMessage => {
 export const fetchPeople = () => {
 	// debugger;
 	return function(dispatch) {
-    dispatch(fetching());
+		dispatch(fetching());
 		axios
 			.get('https://swapi.co/api/people')
 			.then(res => {
-        // debugger;
-				dispatch(succeded(res.data));
+				// debugger;
+				dispatch(succeded(res.data.results));
 			})
 			.catch(error => {
-        // debugger;
+				// debugger;
 				dispatch(failed(error.message));
 			});
 	};
