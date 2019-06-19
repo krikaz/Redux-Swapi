@@ -6,6 +6,7 @@ const initialState = {
 	// Array characters, Boolean fetching, null error.
 };
 export const charsReducer = (state = initialState, action) => {
+  // console.log(types);
 	switch (action.type) {
 		// Fill me in with the important reducers
 		// action types should be FETCHING, SUCCESS and FAILURE
@@ -14,7 +15,6 @@ export const charsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFetching: true,
-				error: '',
 			};
 		case types.SUCCESS:
 			return {
@@ -26,7 +26,7 @@ export const charsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFetching: false,
-				error: 'fetching failed',
+				error: action.payload,
 			};
 
 		default:

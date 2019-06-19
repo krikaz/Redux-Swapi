@@ -12,36 +12,39 @@ export const FAILURE = 'FAILURE';
 // remember that now we have controll over our thunk-based action creator
 
 export const fetching = () => {
+	// debugger;
 	return {
 		type: FETCHING,
 	};
 };
 
-export const succeded = (people) => {
-  return {
-    type: SUCCESS,
-    payload: people
-  }
-}
-
-export const failed = (error) => {
-  return {
-    type: FAILURE,
-    payload: error
-  }
-}
-
-export const fetchPeople = () => {
-	return function(dispatch) {
-		axios
-			.get('https://swapi.co/api/people')
-			.then(res => {
-				dispatch(succeded(res.data));
-			})
-			.catch(error => {
-				dispatch(failed(error.message))
-			});
+export const succeded = people => {
+	return {
+		type: SUCCESS,
+		payload: people,
 	};
 };
 
+export const failed = errorMessage => {
+	return {
+		type: FAILURE,
+		payload: errorMessage,
+	};
+};
 
+export const fetchPeople = () => {
+	// debugger;
+	return function(dispatch) {
+    dispatch(fetching());
+		axios
+			.get('https://swapi.co/api/people')
+			.then(res => {
+        // debugger;
+				dispatch(succeded(res.data));
+			})
+			.catch(error => {
+        // debugger;
+				dispatch(failed(error.message));
+			});
+	};
+};
