@@ -17,17 +17,20 @@ class CharacterListView extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
+		console.log(this.props.error);
 
 		if (this.props.isFetching) {
 			// return something here to indicate that you are fetching data
 			return <div>Data is being fetched...</div>;
-		} else {
+		}
+		if (!this.props.error) {
 			return (
 				<div className="CharactersList_wrapper">
 					<CharacterList characters={this.props.characters} />
 				</div>
 			);
+		} else {
+			return <div>{this.props.error}</div>;
 		}
 	}
 }
