@@ -1,6 +1,8 @@
 import * as types from '../actions';
 const initialState = {
 	characters: [],
+	isFetching: false,
+	error: null,
 	// Array characters, Boolean fetching, null error.
 };
 export const charsReducer = (state = initialState, action) => {
@@ -15,9 +17,15 @@ export const charsReducer = (state = initialState, action) => {
 				error: '',
 			};
 		case types.SUCCESS:
-			return action.payload;
+			return {
+				...state,
+				characters: action.payload,
+				isFetching: false,
+			};
 		case types.FAILURE:
 			return {
+				...state,
+				isFetching: false,
 				error: 'fetching failed',
 			};
 
